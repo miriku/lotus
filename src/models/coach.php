@@ -24,11 +24,11 @@ class coach
 	{
 		$botType;
 		if($this->favorRange > $this->favorHp && $this->favorRange > $this->favorAttack)
-			{ $botType = array("sniper", "attack", "tank", "sniper"); }
+			$botType = array("sniper", "attack", "tank", "sniper");
 		elseif($this->favorHp > $this->favorRange && $this->favorHp > $this->favorAttack)
-			{ $botType = array("tank", "attack", "sniper", "tank"); }
+			$botType = array("tank", "attack", "sniper", "tank");
 		else
-			{ $botType = array("attack", "sniper", "tank", "attack"); }
+			$botType = array("attack", "sniper", "tank", "attack");
 
 		foreach($this->team->player as $player)
 		{
