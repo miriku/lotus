@@ -19,13 +19,13 @@ for($i=0; $i<1000; $i++)
 
 	for($j=0; $j<1000; $j++)
 	{
-		if($person[$j]->hp > $person[$i]->hp) 
+		if($person[$j]->hp > $person[$i]->hp)
 			{ $person[$i]->hpRank++; }
-		if($person[$j]->attack > $person[$i]->attack) 
+		if($person[$j]->attack > $person[$i]->attack)
 			{ $person[$i]->attackRank++; }
-		if($person[$j]->range > $person[$i]->range) 
+		if($person[$j]->range > $person[$i]->range)
 			{ $person[$i]->rangeRank++; }
-		if($person[$j]->speed > $person[$i]->speed) 
+		if($person[$j]->speed > $person[$i]->speed)
 			{ $person[$i]->speedRank++; }
 	}
 }
@@ -69,9 +69,5 @@ for($h=0; $h<7; $h++)
   }
 }
 
-// print the teams
-for($i=0; $i<16; $i++)
-{
-	$team[$i]->debug();
-	print "\n";
-}
+// play 1 match
+playMatch($team[0], $team[1]);

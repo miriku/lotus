@@ -4,6 +4,7 @@ class team
 	public $name = "";
 	public $coach;
 	public $player=array();
+	public $bot=array();
 
 	function __construct($name)
 	{

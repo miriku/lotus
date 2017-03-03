@@ -9,6 +9,7 @@ class player
 	public $hp = 0;
 	public $attack = 0;
 	public $speed = 0;
+	public $fatigue = 1;
 
 	// how good he is compared to others
 	public $rangeRank;

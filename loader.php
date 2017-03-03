@@ -3,6 +3,7 @@
 require("conf/conf.php");
 
 require("src/namer.php");
+require("src/match.php");
 
 require("src/models/bot.php");
 require("src/models/coach.php");
