@@ -1,4 +1,5 @@
 <?php
+
 require("loader.php");
 
 $person = array();
@@ -70,4 +71,6 @@ for($h=0; $h<7; $h++)
 }
 
 // play 1 match
-playMatch($team[0], $team[1]);
+
+#playMatch($team[0], $team[1], $matchSize);
+playMatch($team[0], $team[1], 10000);

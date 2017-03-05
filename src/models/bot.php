@@ -11,6 +11,10 @@ class bot
 	public $attack = 0;
 	public $speed = 0;
 
+	// used during matches
+	public $currentHp;
+	public $location;
+
 	function __construct($player, $class)
 	{
 		$this->speed = $player->speed * $player->fatigue;
@@ -18,18 +22,27 @@ class bot
 		$this->hp = $player->hp * $player->fatigue;
 		$this->attack = $player->attack * $player->fatigue;
 
-		if($class == "sniper") { $this->range*=2; }
-		if($class == "tank") { $this->hp*=2; }
-		if($class == "attack") { $this->attack*=2; }
+		if($class == "sniper") { $this->range*=3; }
+		if($class == "tank") { $this->hp*=3; }
+		if($class == "attack") { $this->attack*=3; }
 
 		$this->class = $class;
 		$this->player = $player;
+	}
+
+	function displayUpdate()
+	{
+		$string = "";
+		if($this->currentHp<1)
+			$string .= "DEAD";
+		return "$string " . $this->player->name . " ($this->class) [$this->currentHp ($this->hp), $this->attack, $this->range, $this->speed] @ $this->location";
 	}
 
 	function displayStats()
 	{
 		return "" . $this->player->name . " ($this->class) [$this->hp, $this->attack, $this->range, $this->speed]";
 	}
+
 	function debug()
 	{
 		print "Bot: " . $this->player->name . "($this->class)";

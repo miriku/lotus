@@ -18,5 +18,5 @@ $teamName = array(
   "Inner Ring",
 );
 
-
+$matchSize = 10000;
 ?>
