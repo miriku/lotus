@@ -19,4 +19,5 @@ $teamName = array(
 );
 
 $matchSize = 10000;
+$playersTotal = 300;
 ?>

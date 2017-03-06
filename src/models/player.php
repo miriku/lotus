@@ -41,5 +41,6 @@ class player
 	function debug()
 	{
 		print "Player: $this->name (range $this->range, hp $this->hp, attack $this->attack, speed $this->speed) \n\t\t(#$this->rangeRank, #$this->hpRank, #$this->attackRank, #$this->speedRank)\n";
+		print "        Season: " . $this->stats["seasonKills"] . " kills, " . $this->stats["seasonDeaths"] . " deaths, " . $this->stats["seasonDamageCaused"] . " attack, " . $this->stats["seasonDamageTaken"] . " tanked\n";
 	}
 }

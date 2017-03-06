@@ -7,18 +7,18 @@ $coach = array();
 $team = array();
 
 // create people
-for($i=0; $i<1000; $i++)
+for($i=0; $i<$playersTotal; $i++)
 {
   $person[] = new player();
 }
 
 // set up rankings for all players
-for($i=0; $i<1000; $i++)
+for($i=0; $i<$playersTotal; $i++)
 {
 	$person[$i]->hpRank = $person[$i]->attackRank =
 		$person[$i]->speedRank = $person[$i]->rangeRank = 1;
 
-	for($j=0; $j<1000; $j++)
+	for($j=0; $j<$playersTotal; $j++)
 	{
 		if($person[$j]->hp > $person[$i]->hp)
 			{ $person[$i]->hpRank++; }
@@ -54,7 +54,7 @@ for($h=0; $h<7; $h++)
     // - rank each player for this coach
     $topPlayer = 0;
     $topScore = 0;
-    for($j=0; $j<1000; $j++)
+    for($j=0; $j<$playersTotal; $j++)
     {
       $score = $coach[$i]->scorePlayer($person[$j]);
 
@@ -70,7 +70,28 @@ for($h=0; $h<7; $h++)
   }
 }
 
-// play 1 match
+// play 1 season
+// 30 games (each team plays another twice)
+for($i=1; $i<16; $i++)
+{
+  for($j=0; $j<15; $j++)
+  {
+    $opponent = ($j+$i)%16;
+    playMatch($team[$j], $team[$opponent], $matchSize);
+  }
+}
 
-#playMatch($team[0], $team[1], $matchSize);
-playMatch($team[0], $team[1], 10000);
+$sortedByWins = $team;
+usort($sortedByWins, "cmp_wins");
+foreach($sortedByWins as $thisTeam)
+{
+  print $thisTeam->name . "\n";
+  print $thisTeam->debug();
+}
+
+
+
+function cmp_wins($a, $b)
+{
+  return $a->stats["seasonWins"] < $b->stats["seasonWins"];
+}

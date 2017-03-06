@@ -22,8 +22,16 @@ function playMatch($hometeam, $awayteam, $matchSize)
   printState($hometeam, $awayteam);
   printStats($hometeam, $awayteam);
 
-  if(checkIfSomeoneWon($hometeam, $awayteam)=="home") { print "\nHome in $rounds\n"; }
-  elseif(checkIfSomeoneWon($hometeam, $awayteam)=="away") { print "\nAway in $rounds\n"; }
+  if(checkIfSomeoneWon($hometeam, $awayteam)=="home")
+  {
+    $hometeam->stats["seasonWins"]++;
+    print "\nHome in $rounds\n";
+  }
+  elseif(checkIfSomeoneWon($hometeam, $awayteam)=="away")
+  {
+    $awayteam->stats["seasonWins"]++;
+    print "\nAway in $rounds\n";
+  }
 }
 
 function cmp($a, $b)
