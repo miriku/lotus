@@ -21,14 +21,23 @@ for($i=0; $i<$playersTotal; $i++)
 	for($j=0; $j<$playersTotal; $j++)
 	{
 		if($person[$j]->hp > $person[$i]->hp)
-			{ $person[$i]->hpRank++; }
+			$person[$i]->hpRank++;
 		if($person[$j]->attack > $person[$i]->attack)
-			{ $person[$i]->attackRank++; }
+			$person[$i]->attackRank++;
 		if($person[$j]->range > $person[$i]->range)
-			{ $person[$i]->rangeRank++; }
+			$person[$i]->rangeRank++;
 		if($person[$j]->speed > $person[$i]->speed)
-			{ $person[$i]->speedRank++; }
+			$person[$i]->speedRank++;
 	}
+}
+
+// convert rank to percent
+foreach($person as $thisPerson)
+{
+  $thisPerson->hpRank = round($thisPerson->hpRank * 100 / 300, 2);
+  $thisPerson->attackRank = round($thisPerson->attackRank * 100 / 300, 2);
+  $thisPerson->rangeRank = round($thisPerson->rangeRank * 100 / 300, 2);
+  $thisPerson->speedRank = round($thisPerson->speedRank * 100 / 300, 2);
 }
 
 // create teams
