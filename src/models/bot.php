@@ -14,16 +14,18 @@ class bot
 	// used during matches
 	public $currentHp;
 	public $location;
+	public $dead;
 
 	// per match stats
 	public $stats;
 
 	function __construct($player, $class)
 	{
-		$this->speed = $player->speed * $player->fatigue;
-		$this->range = $player->range * $player->fatigue;
-		$this->hp = $player->hp * $player->fatigue;
-		$this->attack = $player->attack * $player->fatigue;
+		$this->speed = ceil($player->speed * $player->fatigue);
+		$this->range = ceil($player->range * $player->fatigue);
+		$this->hp = ceil($player->hp * $player->fatigue);
+		$this->attack = ceil($player->attack * $player->fatigue);
+		$this->dead = 0;
 
 		if($class == "sniper") { $this->range*=3; }
 		if($class == "tank") { $this->hp*=3; }

@@ -99,8 +99,6 @@ foreach($sortedByWins as $thisTeam)
   print $thisTeam->debug();
 }
 
-
-
 function cmp_wins($a, $b)
 {
   return $a->stats["seasonWins"] < $b->stats["seasonWins"];

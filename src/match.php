@@ -45,7 +45,7 @@ function tireFighters($team)
   {
     if($player->inMatch)
     {
-      $player->fatigue -= 0.01;
+      $player->fatigue -= 0.005;
       if($player->fatigue < 0.1) $player->fatigue=0.1;
     }
     else
@@ -175,6 +175,10 @@ function goOneRound($hometeam, $awayteam, &$fighters, $matchSize)
 
       if($closestBot->currentHp < 1)
       {
+        if($closestBot->dead) continue;
+
+        $closestBot->dead=1;
+
         $key = array_search($closestBot, $fighters);
         unset($fighters[$key]);
 

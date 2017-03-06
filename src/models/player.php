@@ -45,7 +45,7 @@ class player
 	function debug()
 	{
 		print "Player: $this->name (range $this->range, hp $this->hp, attack $this->attack, speed $this->speed) \n\t\t($this->rangeRank%, $this->hpRank%, $this->attackRank%, $this->speedRank%) @ fatigue " . $this->fatigue . "\n";
-		print "        Season: " . $this->stats["seasonGames"] . " games, " . $this->stats["seasonKills"] . " kills, " . $this->stats["seasonDeaths"] . " deaths, " . $this->stats["seasonDamageCaused"] . " attack, " . $this->stats["seasonDamageTaken"] . " tanked\n";
+		print "        Season: " . $this->stats["seasonGames"] . " games, " . $this->stats["seasonKills"] . " kills, " . $this->stats["seasonDeaths"] . " deaths, " . round($this->stats["seasonKills"]/$this->stats["seasonDeaths"], 2) . " k/d, ". $this->stats["seasonDamageCaused"] . " attack, " . $this->stats["seasonDamageTaken"] . " tanked\n";
 		print "        Per match: " . round($this->stats["seasonKills"]/$this->stats["seasonGames"], 2) . " kills, " . round($this->stats["seasonDeaths"]/$this->stats["seasonGames"], 2) . " deaths, " . round($this->stats["seasonDamageCaused"]/$this->stats["seasonGames"],2) .
 					" attack, " . round($this->stats["seasonDamageTaken"]/$this->stats["seasonGames"],2) . " tanked\n";
 	}
