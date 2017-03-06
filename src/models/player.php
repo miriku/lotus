@@ -17,6 +17,8 @@ class player
 	public $attackRank;
 	public $speedRank;
 
+	public $stats;
+
 	function __construct()
 	{
 		$this->name = makeName();
@@ -24,6 +26,16 @@ class player
 		$this->hp = rand(100, 1000);
 		$this->attack = rand(10, 1000);
 		$this->speed = rand(100, 200);
+
+		$this->stats["careerDamageCaused"] = 0;
+		$this->stats["careerDamageTaken"] = 0;
+		$this->stats["careerKills"] = 0;
+		$this->stats["careerDeaths"] = 0;
+
+		$this->stats["seasonDamageCaused"] = 0;
+		$this->stats["seasonDamageTaken"] = 0;
+		$this->stats["seasonKills"] = 0;
+		$this->stats["seasonDeaths"] = 0;
 	}
 
 	function debug()

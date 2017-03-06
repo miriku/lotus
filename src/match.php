@@ -13,14 +13,14 @@ function playMatch($hometeam, $awayteam, $matchSize)
 	printHeader($hometeam, $awayteam);
   placeInitially($hometeam, $awayteam, $matchSize);
 
-  printState($hometeam, $awayteam);
-
   while(checkIfSomeoneWon($hometeam, $awayteam) == "none")
   {
     goOneRound($hometeam, $awayteam, $fighters, $matchSize);
-    printState($hometeam, $awayteam);
     $rounds++;
   }
+
+  printState($hometeam, $awayteam);
+  printStats($hometeam, $awayteam);
 
   if(checkIfSomeoneWon($hometeam, $awayteam)=="home") { print "\nHome in $rounds\n"; }
   elseif(checkIfSomeoneWon($hometeam, $awayteam)=="away") { print "\nAway in $rounds\n"; }
@@ -135,10 +135,27 @@ function goOneRound($hometeam, $awayteam, &$fighters, $matchSize)
       // remove it from their hp
       $closestBot->currentHp -= $attack;
 
+      // log it
+      $fighter->stats['damageCaused'] += $attack;
+      $closestBot->stats['damageTaken'] += $attack;
+      $fighter->player->stats['seasonDamageCaused'] += $attack;
+      $fighter->player->stats['careerDamageCaused'] += $attack;
+      $closestBot->player->stats['seasonDamageTaken'] += $attack;
+      $closestBot->player->stats['careerDamageTaken'] += $attack;
+
       if($closestBot->currentHp < 1)
       {
         $key = array_search($closestBot, $fighters);
         unset($fighters[$key]);
+
+        // log it
+        $fighter->stats['kills'] += 1;
+        $fighter->player->stats['seasonKills'] += 1;
+        $fighter->player->stats['careerKills'] += 1;
+
+        $closestBot->stats['deaths'] += 1;
+        $closestBot->player->stats['seasonDeaths'] += 1;
+        $closestBot->player->stats['careerDeaths'] += 1;
       }
     }
   }
@@ -183,20 +200,11 @@ function placeInitially($hometeam, $awayteam, $matchSize)
 
 function printHeader($hometeam, $awayteam)
 {
-  print "MATCH DAY\n";
-  print "$hometeam->name\n";
-  print "1. " . $hometeam->bot[0]->displayStats() . "\n";
-  print "2. " . $hometeam->bot[1]->displayStats() . "\n";
-  print "3. " . $hometeam->bot[2]->displayStats() . "\n";
-  print "4. " . $hometeam->bot[3]->displayStats() . "\n";
-  print "\t\t[hp, attack, range, speed]\n";
-  print "VS\n";
-  print "$awayteam->name\n";
-  print "A. " . $awayteam->bot[0]->displayStats() . "\n";
-  print "B. " . $awayteam->bot[1]->displayStats() . "\n";
-  print "C. " . $awayteam->bot[2]->displayStats() . "\n";
-  print "D. " . $awayteam->bot[3]->displayStats() . "\n";
-  print "\t\t[hp, attack, range, speed]\n";
+  print "\n";
+  print strtoupper($hometeam->name);
+  print " VS ";
+  print strtoupper($awayteam->name);
+  print "\n\n";
 }
 
 function printState($hometeam, $awayteam)
@@ -213,5 +221,22 @@ function printState($hometeam, $awayteam)
   print "B. " . $awayteam->bot[1]->displayUpdate() . "\n";
   print "C. " . $awayteam->bot[2]->displayUpdate() . "\n";
   print "D. " . $awayteam->bot[3]->displayUpdate() . "\n";
+  print "\t\t[hp, attack, range, speed]\n";
+}
+
+function printStats($hometeam, $awayteam)
+{
+  print "$hometeam->name\n";
+  print "1. " . $hometeam->bot[0]->displayStats() . "\n";
+  print "2. " . $hometeam->bot[1]->displayStats() . "\n";
+  print "3. " . $hometeam->bot[2]->displayStats() . "\n";
+  print "4. " . $hometeam->bot[3]->displayStats() . "\n";
+  print "\t\t[hp, attack, range, speed]\n";
+  print "VS\n";
+  print "$awayteam->name\n";
+  print "A. " . $awayteam->bot[0]->displayStats() . "\n";
+  print "B. " . $awayteam->bot[1]->displayStats() . "\n";
+  print "C. " . $awayteam->bot[2]->displayStats() . "\n";
+  print "D. " . $awayteam->bot[3]->displayStats() . "\n";
   print "\t\t[hp, attack, range, speed]\n";
 }

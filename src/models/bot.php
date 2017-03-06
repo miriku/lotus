@@ -15,6 +15,9 @@ class bot
 	public $currentHp;
 	public $location;
 
+	// per match stats
+	public $stats;
+
 	function __construct($player, $class)
 	{
 		$this->speed = $player->speed * $player->fatigue;
@@ -28,6 +31,11 @@ class bot
 
 		$this->class = $class;
 		$this->player = $player;
+
+		$this->stats["damageCaused"] = 0;
+		$this->stats["kills"] = 0;
+		$this->stats["deaths"] = 0;
+		$this->stats["damageTaken"] = 0;
 	}
 
 	function displayUpdate()
@@ -40,7 +48,10 @@ class bot
 
 	function displayStats()
 	{
-		return "" . $this->player->name . " ($this->class) [$this->hp, $this->attack, $this->range, $this->speed]";
+		return "" . $this->player->name . " ($this->class) [$this->hp, $this->attack, $this->range, $this->speed]" .
+					"\nKills: ". $this->stats["kills"] . " (" . $this->player->stats["seasonKills"] . ")" .
+					"\nDamage Caused: ". $this->stats["damageCaused"] . " (" . $this->player->stats["seasonDamageCaused"] . ")" .
+					"\nDamage Taken: ". $this->stats["damageTaken"] . " (" . $this->player->stats["seasonDamageTaken"] . ")";
 	}
 
 	function debug()
