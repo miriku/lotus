@@ -39,10 +39,38 @@ class coach
 				if($this->scorePlayer($otherPlayer) > $myScore) { $myRank++; }
 			}
 
-			if($myRank==1) { $this->team->bot[0] = new bot($player, $botType[0]); }
-			elseif($myRank==2) { $this->team->bot[1] = new bot($player, $botType[1]); }
-			elseif($myRank==3) { $this->team->bot[2] = new bot($player, $botType[2]); }
-			elseif($myRank==4) { $this->team->bot[3] = new bot($player, $botType[3]); }
+			if($myRank==1)
+			{
+				$player->inMatch = 1;
+				$player->stats["seasonGames"]++;
+				$player->stats["careerGames"]++;
+				$this->team->bot[0] = new bot($player, $botType[0]);
+			}
+			elseif($myRank==2)
+			{
+				$player->inMatch = 1;
+				$player->stats["seasonGames"]++;
+				$player->stats["careerGames"]++;
+				$this->team->bot[1] = new bot($player, $botType[1]);
+			}
+			elseif($myRank==3)
+			{
+				$player->inMatch = 1;
+				$player->stats["seasonGames"]++;
+				$player->stats["careerGames"]++;
+				$this->team->bot[2] = new bot($player, $botType[2]);
+			}
+			elseif($myRank==4)
+			{
+				$player->inMatch = 1;
+				$player->stats["seasonGames"]++;
+				$player->stats["careerGames"]++;
+				$this->team->bot[3] = new bot($player, $botType[3]);
+			}
+			else
+			{
+				$player->inMatch = 0;
+			}
 		}
 	}
 

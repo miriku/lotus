@@ -11,11 +11,12 @@ class team
 	{
 		$this->name = $name;
 		$this->stats["seasonWins"] = 0;
+		$this->stats["seasonLosses"] = 0;
 	}
 
 	function debug()
 	{
-		print "Team: $this->name, " . $this->stats["seasonWins"] . " wins\n";
+		print "Team: $this->name, " . $this->stats["seasonWins"] . " wins, " . $this->stats["seasonLosses"] . " losses\n";
 		print $this->coach->debug();
 		$counter=1;
 		foreach($this->player as $thisPlayer)

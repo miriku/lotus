@@ -48,7 +48,7 @@ class bot
 
 	function displayStats()
 	{
-		return "" . $this->player->name . " ($this->class) [$this->hp, $this->attack, $this->range, $this->speed]" .
+		return "" . $this->player->name . " ($this->class) [$this->hp, $this->attack, $this->range, $this->speed] at " . $this->player->fatigue. " fatigue" .
 					"\nKills: ". $this->stats["kills"] . " (" . $this->player->stats["seasonKills"] . ")" .
 					"\nDamage Caused: ". $this->stats["damageCaused"] . " (" . $this->player->stats["seasonDamageCaused"] . ")" .
 					"\nDamage Taken: ". $this->stats["damageTaken"] . " (" . $this->player->stats["seasonDamageTaken"] . ")";

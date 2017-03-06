@@ -25,12 +25,34 @@ function playMatch($hometeam, $awayteam, $matchSize)
   if(checkIfSomeoneWon($hometeam, $awayteam)=="home")
   {
     $hometeam->stats["seasonWins"]++;
+    $awayteam->stats["seasonLosses"]++;
     print "\nHome in $rounds\n";
   }
   elseif(checkIfSomeoneWon($hometeam, $awayteam)=="away")
   {
     $awayteam->stats["seasonWins"]++;
+    $hometeam->stats["seasonLosses"]++;
     print "\nAway in $rounds\n";
+  }
+
+  tireFighters($hometeam);
+  tireFighters($awayteam);
+}
+
+function tireFighters($team)
+{
+  foreach($team->player as $player)
+  {
+    if($player->inMatch)
+    {
+      $player->fatigue -= 0.01;
+      if($player->fatigue < 0.1) $player->fatigue=0.1;
+    }
+    else
+    {
+      $player->fatigue += 1;
+      if($player->fatigue>1) $player->fatigue=1;
+    }
   }
 }
 

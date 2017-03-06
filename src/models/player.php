@@ -19,6 +19,8 @@ class player
 
 	public $stats;
 
+	public $inMatch = 0;
+
 	function __construct()
 	{
 		$this->name = makeName();
@@ -31,16 +33,18 @@ class player
 		$this->stats["careerDamageTaken"] = 0;
 		$this->stats["careerKills"] = 0;
 		$this->stats["careerDeaths"] = 0;
+		$this->stats["careerGames"] = 0;
 
 		$this->stats["seasonDamageCaused"] = 0;
 		$this->stats["seasonDamageTaken"] = 0;
 		$this->stats["seasonKills"] = 0;
 		$this->stats["seasonDeaths"] = 0;
+		$this->stats["seasonGames"] = 0;
 	}
 
 	function debug()
 	{
-		print "Player: $this->name (range $this->range, hp $this->hp, attack $this->attack, speed $this->speed) \n\t\t(#$this->rangeRank, #$this->hpRank, #$this->attackRank, #$this->speedRank)\n";
-		print "        Season: " . $this->stats["seasonKills"] . " kills, " . $this->stats["seasonDeaths"] . " deaths, " . $this->stats["seasonDamageCaused"] . " attack, " . $this->stats["seasonDamageTaken"] . " tanked\n";
+		print "Player: $this->name (range $this->range, hp $this->hp, attack $this->attack, speed $this->speed) \n\t\t(#$this->rangeRank, #$this->hpRank, #$this->attackRank, #$this->speedRank) @ fatigue " . $this->fatigue . "\n";
+		print "        Season: " . $this->stats["seasonGames"] . " games, " . $this->stats["seasonKills"] . " kills, " . $this->stats["seasonDeaths"] . " deaths, " . $this->stats["seasonDamageCaused"] . " attack, " . $this->stats["seasonDamageTaken"] . " tanked\n";
 	}
 }

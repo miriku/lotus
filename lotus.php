@@ -85,7 +85,7 @@ $sortedByWins = $team;
 usort($sortedByWins, "cmp_wins");
 foreach($sortedByWins as $thisTeam)
 {
-  print $thisTeam->name . "\n";
+  print "\n";
   print $thisTeam->debug();
 }
 
