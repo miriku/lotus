@@ -74,11 +74,12 @@ for($h=0; $h<7; $h++)
 // 30 games (each team plays another twice)
 for($i=1; $i<16; $i++)
 {
-  for($j=0; $j<15; $j++)
+  for($j=0; $j<16; $j++)
   {
     $opponent = ($j+$i)%16;
     playMatch($team[$j], $team[$opponent], $matchSize);
   }
+  print "\n";
 }
 
 $sortedByWins = $team;
