@@ -50,10 +50,13 @@ class bot
 
 	function displayStats()
 	{
-		return "" . $this->player->name . " ($this->class) [$this->hp, $this->attack, $this->range, $this->speed] at " . $this->player->fatigue. " fatigue" .
+		$string = "";
+		if($this->currentHp<1)
+			$string .= "DEAD";
+		return "" . $this->player->name . " ($this->class) [$this->hp, $this->attack, $this->range, $this->speed] at " . $this->player->fatigue. " fatigue $string" .
 					"\nKills: ". $this->stats["kills"] . " (" . $this->player->stats["seasonKills"] . ")" .
-					"\nDamage Caused: ". $this->stats["damageCaused"] . " (" . $this->player->stats["seasonDamageCaused"] . ")" .
-					"\nDamage Taken: ". $this->stats["damageTaken"] . " (" . $this->player->stats["seasonDamageTaken"] . ")";
+					" Damage Caused: ". $this->stats["damageCaused"] . " (" . $this->player->stats["seasonDamageCaused"] . ")" .
+					" Damage Taken: ". $this->stats["damageTaken"] . " (" . $this->player->stats["seasonDamageTaken"] . ")";
 	}
 
 	function debug()

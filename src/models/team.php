@@ -14,6 +14,11 @@ class team
 		$this->stats["seasonLosses"] = 0;
 	}
 
+	function printWinLoss()
+	{
+		print "Team: $this->name, " . $this->stats["seasonWins"] . " wins, " . $this->stats["seasonLosses"] . " losses\n";
+	}
+
 	function debug()
 	{
 		print "Team: $this->name, " . $this->stats["seasonWins"] . " wins, " . $this->stats["seasonLosses"] . " losses\n";

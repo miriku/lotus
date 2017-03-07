@@ -19,7 +19,6 @@ function playMatch($hometeam, $awayteam, $matchSize)
     $rounds++;
   }
 
-  printState($hometeam, $awayteam);
   printStats($hometeam, $awayteam);
 
   if(checkIfSomeoneWon($hometeam, $awayteam)=="home")
@@ -260,17 +259,15 @@ function printState($hometeam, $awayteam)
 
 function printStats($hometeam, $awayteam)
 {
-  print "$hometeam->name\n";
+  $hometeam->printWinLoss();
   print "1. " . $hometeam->bot[0]->displayStats() . "\n";
   print "2. " . $hometeam->bot[1]->displayStats() . "\n";
   print "3. " . $hometeam->bot[2]->displayStats() . "\n";
   print "4. " . $hometeam->bot[3]->displayStats() . "\n";
-  print "\t\t[hp, attack, range, speed]\n";
   print "VS\n";
-  print "$awayteam->name\n";
+  $awayteam->printWinLoss();
   print "A. " . $awayteam->bot[0]->displayStats() . "\n";
   print "B. " . $awayteam->bot[1]->displayStats() . "\n";
   print "C. " . $awayteam->bot[2]->displayStats() . "\n";
   print "D. " . $awayteam->bot[3]->displayStats() . "\n";
-  print "\t\t[hp, attack, range, speed]\n";
 }

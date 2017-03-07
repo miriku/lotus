@@ -87,6 +87,7 @@ for($i=1; $i<16; $i++)
   {
     $opponent = ($j+$i)%16;
     playMatch($team[$j], $team[$opponent], $matchSize);
+		sleep(10);
   }
   print "\n";
 }
