@@ -5,6 +5,7 @@ require("loader.php");
 $person = array();
 $coach = array();
 $team = array();
+$zineGN = new gn();
 
 // create people
 for($i=0; $i<$playersTotal; $i++)
@@ -80,16 +81,18 @@ for($h=0; $h<7; $h++)
 }
 
 // play 1 season
-// 30 games (each team plays another twice)
+// (each team plays another twice)
 for($i=1; $i<16; $i++)
 {
   for($j=0; $j<16; $j++)
   {
     $opponent = ($j+$i)%16;
     playMatch($team[$j], $team[$opponent], $matchSize);
-		sleep(10);
   }
-  print "\n";
+  // at this point we'd iterate for next round, so the GN zine does reporting
+  $sortedByWins = $team;
+  usort($sortedByWins, "cmp_wins");
+  $zineGN->printSeasonState($sortedByWins);
 }
 
 $sortedByWins = $team;

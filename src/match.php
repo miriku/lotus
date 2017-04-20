@@ -10,7 +10,6 @@ function playMatch($hometeam, $awayteam, $matchSize)
     $hometeam->bot[3], $awayteam->bot[0], $awayteam->bot[1], $awayteam->bot[2],
     $awayteam->bot[3]);
 
-	printHeader($hometeam, $awayteam);
   placeInitially($hometeam, $awayteam, $matchSize);
 
   while(checkIfSomeoneWon($hometeam, $awayteam) == "none")
@@ -19,19 +18,15 @@ function playMatch($hometeam, $awayteam, $matchSize)
     $rounds++;
   }
 
-  printStats($hometeam, $awayteam);
-
   if(checkIfSomeoneWon($hometeam, $awayteam)=="home")
   {
     $hometeam->stats["seasonWins"]++;
     $awayteam->stats["seasonLosses"]++;
-    print "\nHome in $rounds\n";
   }
   elseif(checkIfSomeoneWon($hometeam, $awayteam)=="away")
   {
     $awayteam->stats["seasonWins"]++;
     $hometeam->stats["seasonLosses"]++;
-    print "\nAway in $rounds\n";
   }
 
   tireFighters($hometeam);
@@ -235,9 +230,13 @@ function printHeader($hometeam, $awayteam)
 {
   print "\n";
   print strtoupper($hometeam->name);
+  print " ";
+  $hometeam->printWinLoss();
   print " VS ";
   print strtoupper($awayteam->name);
-  print "\n\n";
+  print " ";
+  $awayteam->printWinLoss();
+  print "\n";
 }
 
 function printState($hometeam, $awayteam)

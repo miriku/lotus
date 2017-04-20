@@ -33,3 +33,25 @@ Name Generator
  - consonant: b, c, ch, d, f, g, h, j, k, l, m, n, p, qu, r, s, sh, t, v, z
  - vowel: a, e, i, o u
  - start in random, iterate between groups 2 to 5 times
+
+Zines
+ - GN - match reports, league stats
+ - Star - player and coach profiles, team performance
+ - c-all - meta analysis
+	 *
+
+Stats To Generate
+ - common player stats to store in class player, per season (for each do highest/lowest/average/count if numerical)
+   - dps (second)
+   - dpg (game)
+   - range of damage
+   - taken damage range
+   - taken damage class
+ - team stats, per season (store in team)
+   - surviving enemy bots at end
+   - surviving enemy hp at end
+   - average range per damage
+ - generated stats (created from data, vs collected)
+   - class effectiveness for wins
+   - class effectiveness for damage
+   - coach favorability stats
