@@ -35,10 +35,10 @@ for($i=0; $i<$playersTotal; $i++)
 // convert rank to percent
 foreach($person as $thisPerson)
 {
-  $thisPerson->hpRank = round($thisPerson->hpRank * 100 / 300, 2);
-  $thisPerson->attackRank = round($thisPerson->attackRank * 100 / 300, 2);
-  $thisPerson->rangeRank = round($thisPerson->rangeRank * 100 / 300, 2);
-  $thisPerson->speedRank = round($thisPerson->speedRank * 100 / 300, 2);
+  $thisPerson->hpRank = round($thisPerson->hpRank * 100 / $playersTotal, 2);
+  $thisPerson->attackRank = round($thisPerson->attackRank * 100 / $playersTotal, 2);
+  $thisPerson->rangeRank = round($thisPerson->rangeRank * 100 / $playersTotal, 2);
+  $thisPerson->speedRank = round($thisPerson->speedRank * 100 / $playersTotal, 2);
 }
 
 // create teams
@@ -95,13 +95,10 @@ for($i=1; $i<16; $i++)
   $zineGN->printSeasonState($sortedByWins);
 }
 
+$zineGN->printTopWorldPlayers($person);
+
 $sortedByWins = $team;
 usort($sortedByWins, "cmp_wins");
-foreach($sortedByWins as $thisTeam)
-{
-  print "\n";
-  print $thisTeam->debug();
-}
 
 function cmp_wins($a, $b)
 {
