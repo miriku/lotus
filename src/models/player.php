@@ -34,12 +34,18 @@ class player
 		$this->stats["careerKills"] = 0;
 		$this->stats["careerDeaths"] = 0;
 		$this->stats["careerGames"] = 0;
+		$this->stats["careerBotAttack"] = 0;
+		$this->stats["careerBotSniper"] = 0;
+		$this->stats["careerBotTank"] = 0;
 
 		$this->stats["seasonDamageCaused"] = 0;
 		$this->stats["seasonDamageTaken"] = 0;
 		$this->stats["seasonKills"] = 0;
 		$this->stats["seasonDeaths"] = 0;
 		$this->stats["seasonGames"] = 0;
+		$this->stats["seasonBotAttack"] = 0;
+		$this->stats["seasonBotSniper"] = 0;
+		$this->stats["seasonBotTank"] = 0;
 	}
 
 	function debug()

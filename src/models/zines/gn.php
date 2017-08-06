@@ -28,6 +28,8 @@
       // do stats analysis of teams in current state to find
       // - top 5 damage dealers
       // - top 5 blockers
+      // - top 5 kills
+      // - top 5 deaths
       
       for($i=0; $i<$playersTotal; $i++)
       {
@@ -52,13 +54,22 @@
       	}
       }
       
-			// print top 5
+      // display
+      gn::printTopFive($rank, "damageDone", $players, "careerDamageCaused", "Top Damage Dealers", " damage");
+      gn::printTopFive($rank, "damageTaken", $players, "careerDamageTaken", "Top Damage Taken", " damage");
+      gn::printTopFive($rank, "kills", $players, "careerKills", "Top Last Hitters", " kills");
+      gn::printTopFive($rank, "deaths", $players, "careerDeaths", "Most Deaths", " deaths");
+    }
+ 
+	  static function printTopFive($rank, $rankString, $players, $stat, $header, $unit)
+  	{
+  		print $header . "\n";
 			for($i=0; $i<5; $i++)
 			{
 				$printingI = $i+1;
 				$thisOne;
 				
-				foreach($rank["damageDone"] as $key => $val)
+				foreach($rank[$rankString] as $key => $val)
 				{
 					if($i == $val)
 					{
@@ -69,8 +80,10 @@
 				
 				print "$printingI. " .
 					$players[$thisOne]->name . " (" . 
-					$players[$thisOne]->team->name . ")" . 
-					$players[$thisOne]->stats['careerDamageCaused']. " hp\n"; 
+					$players[$thisOne]->team->name . ") " . 
+					$players[$thisOne]->stats[$stat]. " $unit\n"; 
+				$players[$thisOne]->debug();
 			}
-    }
+			print "\n";
+		}
   }
