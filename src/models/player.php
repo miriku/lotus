@@ -48,6 +48,27 @@ class player
 		$this->stats["seasonBotTank"] = 0;
 	}
 
+	function recordBot($bot)
+	{
+		$this->stats["careerGames"]++;
+		$this->stats["seasonGames"]++;
+		if("attack"==$bot)
+		{
+			$this->stats["careerBotAttack"]++;
+			$this->stats["seasonBotAttack"]++;
+		}
+		if("tank"==$bot)
+		{
+			$this->stats["careerBotTank"]++;
+			$this->stats["seasonBotTank"]++;
+		}
+		if("sniper"==$bot)
+		{
+			$this->stats["careerBotSniper"]++;
+			$this->stats["seasonBotSniper"]++;
+		}
+	}
+	
 	function debug()
 	{
 		print "Player: $this->name (range $this->range, hp $this->hp, attack $this->attack, speed $this->speed) \n\t\t($this->rangeRank%, $this->hpRank%, $this->attackRank%, $this->speedRank%) @ fatigue " . $this->fatigue . "\n";
@@ -62,5 +83,6 @@ class player
 		else print "        Season: 0 games\n";
 		if($this->stats["seasonGames"]>0) print "        Per match: " . round($this->stats["seasonKills"]/$this->stats["seasonGames"], 2) . " kills, " . round($this->stats["seasonDeaths"]/$this->stats["seasonGames"], 2) . " deaths, " . round($this->stats["seasonDamageCaused"]/$this->stats["seasonGames"],2) .
 					" attack, " . round($this->stats["seasonDamageTaken"]/$this->stats["seasonGames"],2) . " tanked\n";
+		if($this->stats["seasonGames"]>0) print "        Bots driven: " . $this->stats["seasonBotAttack"] . " attack, " . $this->stats["seasonBotTank"] . " tank, " . $this->stats["seasonBotSniper"] . " sniper.\n";
 	}
 }
