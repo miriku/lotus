@@ -117,6 +117,27 @@ class player
 		}
 	}
 
+	function recordBot($bot)
+	{
+		$this->stats["careerGames"]++;
+		$this->stats["seasonGames"]++;
+		if("attack"==$bot)
+		{
+			$this->stats["careerBotAttack"]++;
+			$this->stats["seasonBotAttack"]++;
+		}
+		if("tank"==$bot)
+		{
+			$this->stats["careerBotTank"]++;
+			$this->stats["seasonBotTank"]++;
+		}
+		if("sniper"==$bot)
+		{
+			$this->stats["careerBotSniper"]++;
+			$this->stats["seasonBotSniper"]++;
+		}
+	}
+
 	function debug()
 	{
 		print "Player: $this->name (range $this->range, hp $this->hp, attack $this->attack, speed $this->speed) \n\t\t($this->rangeRank%, $this->hpRank%, $this->attackRank%, $this->speedRank%) @ fatigue " . $this->fatigue . "\n";

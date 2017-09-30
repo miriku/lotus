@@ -42,30 +42,26 @@ class coach
 			if($myRank==1)
 			{
 				$player->inMatch = 1;
-				$player->stats["seasonGames"]++;
-				$player->stats["careerGames"]++;
 				$this->team->bot[0] = new bot($player, $botType[0]);
+				$player->recordBot($botType[0]);
 			}
 			elseif($myRank==2)
 			{
 				$player->inMatch = 1;
-				$player->stats["seasonGames"]++;
-				$player->stats["careerGames"]++;
 				$this->team->bot[1] = new bot($player, $botType[1]);
+				$player->recordBot($botType[1]);
 			}
 			elseif($myRank==3)
 			{
 				$player->inMatch = 1;
-				$player->stats["seasonGames"]++;
-				$player->stats["careerGames"]++;
 				$this->team->bot[2] = new bot($player, $botType[2]);
+				$player->recordBot($botType[2]);
 			}
 			elseif($myRank==4)
 			{
 				$player->inMatch = 1;
-				$player->stats["seasonGames"]++;
-				$player->stats["careerGames"]++;
 				$this->team->bot[3] = new bot($player, $botType[3]);
+				$player->recordBot($botType[3]);
 			}
 			else
 			{
