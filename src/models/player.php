@@ -61,16 +61,16 @@ class player
 
 		// season end stats
 		$this->retirementChance = 1.5;
-		$this->annualStatMultiplier = rand(75, 125)/100;
+		$this->annualStatMultiplier = rand(80, 110)/100;
 	}
 
 	function applySeasonEnd()
 	{
-		// each stat changes by stat multiplier * (+-0.25)
-		$this->range *= ($this->annualStatMultiplier * ((rand(0, 50)-50)/100));
-		$this->hp *= ($this->annualStatMultiplier * ((rand(0, 50)-50)/100));
-		$this->attack *= ($this->annualStatMultiplier * ((rand(0, 50)-50)/100));
-		$this->speed *= ($this->annualStatMultiplier * ((rand(0, 50)-50)/100));
+		// each stat changes by stat multiplier * (+-0.2)
+		$this->range *= ceil($this->annualStatMultiplier * (rand(80, 120)/100));
+		$this->hp *= ceil($this->annualStatMultiplier * (rand(80, 120)/100));
+		$this->attack *= ceil($this->annualStatMultiplier * (rand(80, 120)/100));
+		$this->speed *= ceil($this->annualStatMultiplier * (rand(80, 120)/100));
 
 		// are they old and getting worse?
 		if($this->retirementChance*10 > rand(1,100)) $this->annualStatMultiplier*=0.98;
@@ -93,27 +93,6 @@ class player
 			$this->stats["seasonBotTank"] = 0;
 
 			$this->retirementChance += 1.5;
-		}
-	}
-
-	function recordBot($bot)
-	{
-		$this->stats["careerGames"]++;
-		$this->stats["seasonGames"]++;
-		if("attack"==$bot)
-		{
-			$this->stats["careerBotAttack"]++;
-			$this->stats["seasonBotAttack"]++;
-		}
-		if("tank"==$bot)
-		{
-			$this->stats["careerBotTank"]++;
-			$this->stats["seasonBotTank"]++;
-		}
-		if("sniper"==$bot)
-		{
-			$this->stats["careerBotSniper"]++;
-			$this->stats["seasonBotSniper"]++;
 		}
 	}
 

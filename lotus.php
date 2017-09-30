@@ -86,7 +86,6 @@ for($year=0; $year<10; $year++)
 {
 	for($i=1; $i<16; $i++)
 	{
-    print "------------ MATCH DAY $i ------------\n";
 		for($j=0; $j<16; $j++)
 		{
   		$opponent = ($j+$i)%16;
@@ -95,14 +94,16 @@ for($year=0; $year<10; $year++)
 		// at this point we'd iterate for next round, so the GN zine does reporting
 		$sortedByWins = $team;
 		usort($sortedByWins, "cmp_wins");
-		$zineGN->printSeasonState($sortedByWins);
+		// $zineGN->printSeasonState($sortedByWins);
 	}
-
-  print "------------ YEAR END $year ------------\n";
 
   // apply each players season end stats
   foreach($person as $thisPerson)
+  {
+    print "---- $year\n";
+    $thisPerson->debug();
     $thisPerson->applySeasonEnd();
+  }
 
   // apply each team season end stats
   foreach($team as $thisTeam)
