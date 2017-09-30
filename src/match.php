@@ -15,6 +15,14 @@ function playMatch($hometeam, $awayteam, $matchSize)
   while(checkIfSomeoneWon($hometeam, $awayteam) == "none")
   {
     goOneRound($hometeam, $awayteam, $fighters, $matchSize);
+    // sudden death necessary?
+    if($rounds>10000)
+    {
+      foreach($fighters as $fighter)
+      {
+        $fighter->currentHp-=10;
+      }
+    }
     $rounds++;
   }
 

@@ -19,6 +19,12 @@ class team
 		print "Team: $this->name, " . $this->stats["seasonWins"] . " wins, " . $this->stats["seasonLosses"] . " losses\n";
 	}
 
+	function applySeasonEnd()
+	{
+		$this->stats["seasonWins"] = 0;
+		$this->stats["seasonLosses"] = 0;
+	}
+
 	function debug()
 	{
 		print "Team: $this->name, " . $this->stats["seasonWins"] . " wins, " . $this->stats["seasonLosses"] . " losses\n";

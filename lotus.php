@@ -35,10 +35,10 @@ for($i=0; $i<$playersTotal; $i++)
 // convert rank to percent
 foreach($person as $thisPerson)
 {
-  $thisPerson->hpRank = round($thisPerson->hpRank * 100 / 300, 2);
-  $thisPerson->attackRank = round($thisPerson->attackRank * 100 / 300, 2);
-  $thisPerson->rangeRank = round($thisPerson->rangeRank * 100 / 300, 2);
-  $thisPerson->speedRank = round($thisPerson->speedRank * 100 / 300, 2);
+  $thisPerson->hpRank = round($thisPerson->hpRank * 100 / $playersTotal, 2);
+  $thisPerson->attackRank = round($thisPerson->attackRank * 100 / $playersTotal, 2);
+  $thisPerson->rangeRank = round($thisPerson->rangeRank * 100 / $playersTotal, 2);
+  $thisPerson->speedRank = round($thisPerson->speedRank * 100 / $playersTotal, 2);
 }
 
 // create teams
@@ -80,28 +80,39 @@ for($h=0; $h<7; $h++)
   }
 }
 
-// play 1 season
+// play 10 season
 // (each team plays another twice)
-for($i=1; $i<16; $i++)
+for($year=0; $year<10; $year++)
 {
-  for($j=0; $j<16; $j++)
-  {
-    $opponent = ($j+$i)%16;
-    playMatch($team[$j], $team[$opponent], $matchSize);
-  }
-  // at this point we'd iterate for next round, so the GN zine does reporting
-  $sortedByWins = $team;
-  usort($sortedByWins, "cmp_wins");
-  $zineGN->printSeasonState($sortedByWins);
+	for($i=1; $i<16; $i++)
+	{
+    print "------------ MATCH DAY $i ------------\n";
+		for($j=0; $j<16; $j++)
+		{
+  		$opponent = ($j+$i)%16;
+  		playMatch($team[$j], $team[$opponent], $matchSize);
+		}
+		// at this point we'd iterate for next round, so the GN zine does reporting
+		$sortedByWins = $team;
+		usort($sortedByWins, "cmp_wins");
+		$zineGN->printSeasonState($sortedByWins);
+	}
+
+  print "------------ YEAR END $year ------------\n";
+
+  // apply each players season end stats
+  foreach($person as $thisPerson)
+    $thisPerson->applySeasonEnd();
+
+  // apply each team season end stats
+  foreach($team as $thisTeam)
+    $thisTeam->applySeasonEnd();
 }
+
+$zineGN->printTopWorldPlayers($person);
 
 $sortedByWins = $team;
 usort($sortedByWins, "cmp_wins");
-foreach($sortedByWins as $thisTeam)
-{
-  print "\n";
-  print $thisTeam->debug();
-}
 
 function cmp_wins($a, $b)
 {
